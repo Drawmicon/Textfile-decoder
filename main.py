@@ -62,7 +62,7 @@ def decoder(file_path_string):
 
     secretMessage = ""
 
-    file_path = "/Users/drawmicon/Desktop/Coding/message_file2.txt"
+    file_path = file_path_string
     message = readTXT2String(file_path)
     stringList = stringSplitter(message)
     for x in stringList:
@@ -78,12 +78,10 @@ def decoder(file_path_string):
     while counter <= len(wordList)-1:
         counter += (iter)
         iter+=1
-        #print(counter, "numList: ", numList[counter-1])
         secretMessage += wordList[counter-1]
-        #print(secretMessage)
     return secretMessage
 
 
-secretMessage = decoder("path")
+secretMessage = decoder("./message_file2.txt")
 print (secretMessage)
 
