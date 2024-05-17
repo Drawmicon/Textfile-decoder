@@ -43,7 +43,7 @@ def reorder():
 
     counter = 0
 
-    for i in range(1,len(wordList)):
+    for i in range(1,len(wordList)+1):
         counter += 1
         for iter, wrd in enumerate(wordList):
             #print("Number to Find: [", counter, "]  vs numList[", numList[iter], "]", " \nwordList: ", wrd )
@@ -51,73 +51,36 @@ def reorder():
                 wordList2.append(wordList[iter])
                 numList2.append(numList[iter])
 
-                print("\t\tWords: ", wordList2)
-                print("\t\tNums: ", numList2)
+                #print("\t\tWords: ", wordList2)
+                #print("\t\tNums: ", numList2)
                 break
 
-    return wordList2
+    return wordList2, numList2
 
 
 def decoder(file_path_string):
 
     secretMessage = ""
 
-    file_path = "/Users/drawmicon/Desktop/Coding/message_file3.txt"
+    file_path = "/Users/drawmicon/Desktop/Coding/message_file2.txt"
     message = readTXT2String(file_path)
-    #print(message)
     stringList = stringSplitter(message)
-    #print(stringList)
-
     for x in stringList:
         stringNumberLists(x)
+    wordList, numList = reorder()
 
-    wordList = reorder()
 
-    check = 0
-
-    #print("Num List: ",numList, "\n")
+    print("Num List: ",numList, "\n")
     print("Word List: ",wordList, "\n")
 
-    for counter  in range(1, len(wordList)):
-
-        check += counter
-
-        for iterator, word in enumerate(wordList):
-
-            if iterator == check:
-                print("counter: ", counter, " \ncheck: ", check, "\nword: ", wordList[iterator], "\n\n")
-
-                secretMessage += wordList[iterator]
-
-                break
-
-
-
-    '''
-    rowInt = 0
-    found  = True
     counter = 0
-
-    secretMessage =""
-
-    while found is True:
-
-        print ("\n\n\t\t\tSecret Message: ", secretMessage, "\n\n")
-        rowInt += 1
-        counter += rowInt
-        found = False
-
-        #print("Row: ", rowInt, " \nCodeNum: ", counter, " \nFound?: ", found, "\n")
-
-        for i, x in enumerate(wordList):
-            #print("Current Word: ",wordList[i],"\nInterator: ", i, "\nComparing ", numList[i], " to ", counter)
-            if numList[i] == counter:
-                print(i, ": ", wordList[i])
-                secretMessage += wordList[i]
-                found = True
-                break
-
-    '''
+    iter = 1
+    while counter <= len(wordList)-1:
+        counter += (iter)
+        iter+=1
+        #print(counter, "numList: ", numList[counter-1])
+        secretMessage += wordList[counter-1]
+        #print(secretMessage)
     return secretMessage
 
 
